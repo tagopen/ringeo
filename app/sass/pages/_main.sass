@@ -1,0 +1,257 @@
++comment('general style')
+
++cm('png icons')
++ic 
+
++cm('svg icons')
++svg
+@each $sprite in $svg-spritesheet-sprites
+  .svg--#{nth($sprite, 1)}
+    +svgi($sprite)
++cm('form')
+.text-danger
+  color: $text-danger
+  text-align: left
+.form-group.has-error
+  .form-control 
+    border-color: $form-control-error-border-color
+[type=submit]:disabled
+  animation: progress-bar-stripes 2s linear infinite
+  background-image: $btn-submit-loading-bg
+  background-size: 40px 40px
+@keyframes progress-bar-stripes
+  from
+    background-position: 40px 0
+  to
+    background-position: 0 0
++cm('modal')
+.body
+  display: flex
+  flex-direction: column
+  min-height: 100vh
+.main
+  flex: 1
+.container
+  position: relative
+  margin-left: auto
+  margin-right: auto
+  width: 100%
+  padding-left: 20px
+  padding-right: 20px
+  max-width: 768px
+.heading
+  font: 700 34px/36px $main-font
+  color: #fff
+  text-align: center
+a,
+button
+  outline: none
+  &:hover,
+  &:focus
+    outline: none
+.phone
+  font: 700 24px/30px $main-font
+  color: #fff
+  text-align: center
+  white-space: nowrap
+  &__link
+    color: inherit
+    font: inherit
+    text-decoration: none
+    &:hover,
+    &:focus
+      color: inherit
+      text-decoration: none
+.btn
+  position: relative
+  display: inline-block
+  font-weight: normal
+  line-height: 1.25
+  text-align: center
+  white-space: nowrap
+  vertical-align: middle
+  user-select: none
+  border: 1px solid transparent
+  padding: 10px 12px
+  font-size: 1rem
+  border-radius: 3px
+  background-color: #324071
+  overflow: hidden
+  font: 700 14px/24px $main-font
+  color: #fff
+  transition: all 0.2s ease-in-out
+  z-index: 1
+  cursor: pointer
+  &:before
+    position: absolute
+    top: 0
+    left: 0
+    padding: 10px 12px
+    width: 100%
+    height: 100%
+    background: #fff
+    color: #324071
+    content: attr(data-hover)
+    transition: transform 0.3s
+    transform: translateX(-100%)
+    z-index: 2
+  &:hover
+    &:before
+      transform: translateX(0%)
+  &[disabled]
+    &:before
+      content: none
+  &--default
+.notify
+  margin: 14px 0
+  font: 400 14px/24px $main-font
+  color: #fff
+  text-align: center
+
++cm('overlay style')
+.overlay
+  position: fixed
+  display: flex
+  flex-direction: column
+  width: 100%
+  height: 100%
+  top: 0
+  left: 0
+  z-index: 9999
+  &__header
+    &:after,
+    &:before     
+      content: ''
+      position: absolute
+      top: 0
+      left: 0
+      bottom: 0
+      right: 0
+      z-index: -1
+    &:before
+      background: url(../img/overlay.jpg) no-repeat center 0
+
+      filter: grayscale(1)
+    &:after
+      background-image: linear-gradient(to top, rgba(129, 113, 176, 0.9) 0%, rgba(74, 90, 135, 0.9) 100%)
+  &__body
+    flex: 1
+    background-color: #fff
+  &__close
+    width: 80px
+    height: 80px
+    position: absolute
+    right: 20px
+    top: 20px
+    overflow: hidden
+    border: none
+    background: url(../img/cross.png) no-repeat center center
+    text-indent: 200%
+    color: transparent
+    outline: none
+    z-index: 100
+  nav
+    text-align: center
+    position: relative
+    top: 50%
+    transform: translateY(-50%)
+  ul
+    list-style: none
+    padding: 0
+    margin: 0 auto
+    display: inline-block
+    height: 100%
+    position: relative
+    li
+      display: block
+      height: 20%
+      height: calc(100% / 5)
+      min-height: 54px
+      backface-visibility: hidden
+      a
+        font-size: 54px
+        font-weight: 300
+        display: block
+        color: #333333;
+        font-family: "PT Sans";
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 24px;
+        transition: color 0.2s
+        &:hover, &:focus
+          color: #e3fcb1
+
+.overlay-slideright
+  visibility: hidden
+  transform: translateX(100%)
+  transition: transform 0.4s ease-in-out, visibility 0s 0.4s
+  &.open
+    visibility: visible
+    transform: translateX(0%)
+    transition: transform 0.4s ease-in-out
+
++comment("home page style")
+.main
+  &:after,
+  &:before     
+    content: ''
+    position: absolute
+    top: 0
+    left: 0
+    bottom: 0
+    right: 0
+    z-index: -1
+  &:before
+    background: url(../img/overlay.jpg) no-repeat center 0
+
+    filter: grayscale(1)
+  &:after
+    background-image: linear-gradient(to top, rgba(129, 113, 176, 0.9) 0%, rgba(74, 90, 135, 0.9) 100%)
+.content
+  display: flex
+  flex-wrap: wrap
+  height: 100vh
+  &__item
+    flex: 0 0 100%
+    max-width: 100%
+    &--top
+      padding: 20px 0
+      align-self: flex-start
+    &--center
+      align-self: center
+    &--bottom
+      padding: 15px 0
+      align-self: flex-end
+.tabs
+  &__btn
+    width: 100%
+.field
+  &__control
+    position: relative
+    margin: 10px 0
+    padding: 12px 78px 15px 12px
+    border-radius: 3px
+    background-color: #fff
+    overflow: hidden
+    text-overflow: ellipsis
+    font: 400 14px/16px $main-font
+    color: #333
+    &:before
+      content: ''
+      position: absolute
+      display: block
+      top: 50%
+      right: 35px
+      width: 0.5em
+      height: 0.313em
+      transform: translateY(-50%)
+      background-image: url(../img/icons/svg/arrow-down.svg)
+      background-repeat: no-repeat
+    &--disabled
+      background-color: #e0e2ec
+    &--placeholder
+      color: #999
+  &__select
+    display: none
+
+

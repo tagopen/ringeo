@@ -1,0 +1,65 @@
+section.intro
+  .container
+    .content
+      .content__item.content__item--top
+        h1.heading Ringeo
+      .content__item.content__item--center
+        form.form(method="post", action="/")
+          .tabs
+            .tabs__item
+              .step
+                .step__item
+                  .field
+                    #trigger-overlay.field__control.field__control--placeholder
+                    select#mark.field__select(name='mark')
+                      option(value='placeholder') Марка
+                      option(value='0') ЛЕГКОВЫЕ
+                      option(value='2') МОТОЦИКЛЫ
+                      option(value='3') СКУТЕРЫ
+                      option(value='7') МОТОВЕЗДЕХОДЫ
+                      option(value='9') ЛЕГКИЕ КОММЕРЧЕСКИЕ
+                .step__item
+                  .field
+                    .field__control.field__control--disabled.field__control--placeholder
+                    select#model.field__select(name='model')
+                      option(value='placeholder') Модель
+                      option(value='0') ЛЕГКОВЫЕ
+                      option(value='2') МОТОЦИКЛЫ
+                      option(value='3') СКУТЕРЫ
+                      option(value='7') МОТОВЕЗДЕХОДЫ
+                      option(value='9') ЛЕГКИЕ КОММЕРЧЕСКИЕ
+                .step__item
+                  .field
+                    .field__control.field__control--disabled.field__control--placeholder
+                    select#memory.field__select(name='memory')
+                      option(value='placeholder') Память
+                      option(value='0') ЛЕГКОВЫЕ
+                      option(value='2') МОТОЦИКЛЫ
+                      option(value='3') СКУТЕРЫ
+                      option(value='7') МОТОВЕЗДЕХОДЫ
+                      option(value='9') ЛЕГКИЕ КОММЕРЧЕСКИЕ
+                .step__item
+                  .field
+                    .field__control.field__control--disabled.field__control--placeholder
+                    select#color.field__select(name='color')
+                      option(value='placeholder') Цвет
+                      option(value='0') ЛЕГКОВЫЕ
+                      option(value='2') МОТОЦИКЛЫ
+                      option(value='3') СКУТЕРЫ
+                      option(value='7') МОТОВЕЗДЕХОДЫ
+                      option(value='9') ЛЕГКИЕ КОММЕРЧЕСКИЕ
+                .step__item
+                  .field
+                    .field__control.field__control--disabled.field__control--placeholder
+                    select#condition.field__select(name='condition')
+                      option(value='placeholder') Состояние
+                      option(value='0') ЛЕГКОВЫЕ
+                      option(value='2') МОТОЦИКЛЫ
+                      option(value='3') СКУТЕРЫ
+                      option(value='7') МОТОВЕЗДЕХОДЫ
+                      option(value='9') ЛЕГКИЕ КОММЕРЧЕСКИЕ
+              button.btn.btn--default.tabs__btn(type="button" data-tabs-control="next", data-hover="Оценить смартфон" disabled) Оценить смартфон
+              p.notify Все поля обязательны для заполнения
+      .content__item.content__item--bottom
+        .phone
+          a.phone__link(href="tel:84951506618") 8 (495) 150-66-18

@@ -1,0 +1,14 @@
+%svg-common {
+	background: url("svg/sprite.view-8a02453b.svg") no-repeat;
+}
+
+.svg-arrow-down {
+	@extend %svg-common;
+	background-position: 0 0;
+}
+
+.svg-arrow-down-dims {
+	width: 8px;
+	height: 5px;
+}
+
