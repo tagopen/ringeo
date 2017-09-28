@@ -1,14 +1,24 @@
 %svg-common {
-	background: url("svg/sprite.view-8a02453b.svg") no-repeat;
+	background: url("svg/sprite.view-ea266120.svg") no-repeat;
 }
 
-.svg-arrow-down {
+.svg-chevron-arrow-down {
 	@extend %svg-common;
 	background-position: 0 0;
 }
 
-.svg-arrow-down-dims {
-	width: 8px;
-	height: 5px;
+.svg-chevron-arrow-down-dims {
+	width: 32px;
+	height: 32px;
+}
+
+.svg-close {
+	@extend %svg-common;
+	background-position: 100% 0;
+}
+
+.svg-close-dims {
+	width: 32px;
+	height: 32px;
 }
 

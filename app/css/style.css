@@ -599,9 +599,14 @@ output {
   fill: currentColor;
 }
 
-.svg--arrow-down {
-  width: 0.5em;
-  height: 0.3125em;
+.svg--chevron-arrow-down {
+  width: 2em;
+  height: 2em;
+}
+
+.svg--close {
+  width: 2em;
+  height: 2em;
 }
 
 /* form */
@@ -789,7 +794,7 @@ button:focus {
   z-index: 9999;
 }
 
-.overlay__header:after, .overlay__header:before {
+.overlay:after, .overlay:before {
   content: '';
   position: absolute;
   top: 0;
@@ -799,84 +804,91 @@ button:focus {
   z-index: -1;
 }
 
-.overlay__header:before {
+.overlay:before {
   background: url(../img/overlay.jpg) no-repeat center 0;
+  background-size: cover;
   -webkit-filter: grayscale(1);
           filter: grayscale(1);
 }
 
-.overlay__header:after {
+.overlay:after {
   background-image: -webkit-gradient(linear, left bottom, left top, from(rgba(129, 113, 176, 0.9)), to(rgba(74, 90, 135, 0.9)));
   background-image: -webkit-linear-gradient(bottom, rgba(129, 113, 176, 0.9) 0%, rgba(74, 90, 135, 0.9) 100%);
   background-image: linear-gradient(to top, rgba(129, 113, 176, 0.9) 0%, rgba(74, 90, 135, 0.9) 100%);
 }
 
+.overlay__header {
+  position: relative;
+  padding: 22px;
+  font: 400 18px/22px "PT Sans", sans-serif;
+  color: #fff;
+  text-align: center;
+  z-index: 10;
+}
+
 .overlay__body {
+  position: relative;
   -webkit-box-flex: 1;
   -webkit-flex: 1;
       -ms-flex: 1;
           flex: 1;
   background-color: #fff;
+  z-index: 4;
 }
 
 .overlay__close {
-  width: 80px;
-  height: 80px;
   position: absolute;
-  right: 20px;
-  top: 20px;
-  overflow: hidden;
-  border: none;
-  background: url(../img/cross.png) no-repeat center center;
-  text-indent: 200%;
-  color: transparent;
-  outline: none;
-  z-index: 100;
-}
-
-.overlay nav {
-  text-align: center;
-  position: relative;
+  width: 20px;
+  height: 20px;
+  left: 20px;
   top: 50%;
   -webkit-transform: translateY(-50%);
       -ms-transform: translateY(-50%);
           transform: translateY(-50%);
+  overflow: hidden;
+  border: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  background: url(../img/icons/svg/close.svg) no-repeat center center;
+  background-size: contain;
+  text-indent: 200%;
+  color: transparent;
+  outline: none;
+  cursor: pointer;
+  z-index: 100;
 }
 
-.overlay ul {
-  list-style: none;
-  padding: 0;
-  margin: 0 auto;
-  display: inline-block;
-  height: 100%;
+.nav {
   position: relative;
-}
-
-.overlay ul li {
   display: block;
-  height: 20%;
-  height: -webkit-calc(100% / 5);
-  height: calc(100% / 5);
-  min-height: 54px;
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
+  max-width: 768px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
 }
 
-.overlay ul li a {
-  font-size: 54px;
-  font-weight: 300;
+.nav__item {
   display: block;
-  color: #333333;
-  font-family: "PT Sans";
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 24px;
-  -webkit-transition: color 0.2s;
-  transition: color 0.2s;
+  background-color: #fff;
 }
 
-.overlay ul li a:hover, .overlay ul li a:focus {
-  color: #e3fcb1;
+.nav__link {
+  display: block;
+  padding: 20px;
+  font: 400 14px/16px "PT Sans", sans-serif;
+  color: #333;
+  -webkit-transition: all .3s ease-out;
+  transition: all .3s ease-out;
+}
+
+.nav__link:hover, .nav__link:focus {
+  color: rgba(129, 113, 176, 0.9);
+  text-decoration: none;
+}
+
+.nav__link--checked {
+  background-color: rgba(92, 105, 146, 0.1);
 }
 
 .overlay-slideright {
@@ -916,6 +928,7 @@ button:focus {
 
 .main:before {
   background: url(../img/overlay.jpg) no-repeat center 0;
+  background-size: cover;
   -webkit-filter: grayscale(1);
           filter: grayscale(1);
 }
@@ -973,7 +986,7 @@ button:focus {
 .field__control {
   position: relative;
   margin: 10px 0;
-  padding: 12px 78px 15px 12px;
+  padding: 12px 38px 15px 12px;
   -webkit-border-radius: 3px;
           border-radius: 3px;
   background-color: #fff;
@@ -988,14 +1001,15 @@ button:focus {
   position: absolute;
   display: block;
   top: 50%;
-  right: 35px;
-  width: 0.5em;
-  height: 0.313em;
+  right: 15px;
+  width: 16px;
+  height: 10px;
   -webkit-transform: translateY(-50%);
       -ms-transform: translateY(-50%);
           transform: translateY(-50%);
-  background-image: url(../img/icons/svg/arrow-down.svg);
+  background-image: url(../img/icons/svg/chevron-arrow-down.svg);
   background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .field__control--disabled {
@@ -1008,4 +1022,11 @@ button:focus {
 
 .field__select {
   display: none;
+}
+
+.price {
+  display: block;
+  font: 700 40px/42px "PT Sans", sans-serif;
+  color: #fff;
+  text-align: center;
 }

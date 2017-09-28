@@ -1,14 +1,23 @@
-// arrow-down
-$svg-arrow-down-name: "arrow-down";
-$svg-arrow-down-width: em(8);
-$svg-arrow-down-height: em(5);
-$svg-arrow-down-offset-x: px;
-$svg-arrow-down-offset-y: px;
-$svg-arrow-down-image: "../img/sprite.svg";
-$svg-arrow-down: ( "arrow-down", em(8), em(5), px, px, "../img/sprite.svg" );
+// chevron-arrow-down
+$svg-chevron-arrow-down-name: "chevron-arrow-down";
+$svg-chevron-arrow-down-width: em(32);
+$svg-chevron-arrow-down-height: em(32);
+$svg-chevron-arrow-down-offset-x: px;
+$svg-chevron-arrow-down-offset-y: px;
+$svg-chevron-arrow-down-image: "../img/sprite.svg";
+$svg-chevron-arrow-down: ( "chevron-arrow-down", em(32), em(32), px, px, "../img/sprite.svg" );
+
+// close
+$svg-close-name: "close";
+$svg-close-width: em(32);
+$svg-close-height: em(32);
+$svg-close-offset-x: px;
+$svg-close-offset-y: px;
+$svg-close-image: "../img/sprite.svg";
+$svg-close: ( "close", em(32), em(32), px, px, "../img/sprite.svg" );
 
 
 $svg-spritesheet-width: px;
 $svg-spritesheet-height: px;
 $svg-spritesheet-image: "../img/sprite.svg";
-$svg-spritesheet-sprites: ( $svg-arrow-down,  );
+$svg-spritesheet-sprites: ( $svg-chevron-arrow-down,  $svg-close,  );

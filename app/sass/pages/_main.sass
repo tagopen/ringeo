@@ -116,70 +116,75 @@ button
   width: 100%
   height: 100%
   top: 0
-  left: 0
+  left: 0    
   z-index: 9999
+  &:after,
+  &:before     
+    content: ''
+    position: absolute
+    top: 0
+    left: 0
+    bottom: 0
+    right: 0
+    z-index: -1
+  &:before
+    background: url(../img/overlay.jpg) no-repeat center 0
+    background-size: cover
+    filter: grayscale(1)
+  &:after
+    background-image: linear-gradient(to top, rgba(129, 113, 176, 0.9) 0%, rgba(74, 90, 135, 0.9) 100%)
   &__header
-    &:after,
-    &:before     
-      content: ''
-      position: absolute
-      top: 0
-      left: 0
-      bottom: 0
-      right: 0
-      z-index: -1
-    &:before
-      background: url(../img/overlay.jpg) no-repeat center 0
-
-      filter: grayscale(1)
-    &:after
-      background-image: linear-gradient(to top, rgba(129, 113, 176, 0.9) 0%, rgba(74, 90, 135, 0.9) 100%)
+    position: relative
+    padding: 22px
+    font: 400 18px/22px $main-font
+    color: #fff
+    text-align: center
+    z-index: 10
   &__body
+    position: relative
     flex: 1
     background-color: #fff
+    z-index: 4
   &__close
-    width: 80px
-    height: 80px
     position: absolute
-    right: 20px
-    top: 20px
+    width: 20px
+    height: 20px
+    left: 20px
+    top: 50%
+    transform: translateY(-50%)
     overflow: hidden
     border: none
-    background: url(../img/cross.png) no-repeat center center
+    box-shadow: none
+    background: url(../img/icons/svg/close.svg) no-repeat center center
+    background-size: contain
     text-indent: 200%
     color: transparent
     outline: none
+    cursor: pointer
     z-index: 100
-  nav
-    text-align: center
-    position: relative
-    top: 50%
-    transform: translateY(-50%)
-  ul
-    list-style: none
-    padding: 0
-    margin: 0 auto
-    display: inline-block
-    height: 100%
-    position: relative
-    li
-      display: block
-      height: 20%
-      height: calc(100% / 5)
-      min-height: 54px
-      backface-visibility: hidden
-      a
-        font-size: 54px
-        font-weight: 300
-        display: block
-        color: #333333;
-        font-family: "PT Sans";
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 24px;
-        transition: color 0.2s
-        &:hover, &:focus
-          color: #e3fcb1
+.nav
+  position: relative
+  display: block
+  max-width: 768px
+  height: 100%
+  margin: 0 auto
+  padding: 0
+  list-style: none
+  &__item
+    display: block
+    background-color: #fff
+  &__link
+    display: block
+    padding: 20px
+    font: 400 14px/16px $main-font
+    color: #333
+    transition: all .3s ease-out
+    &:hover, 
+    &:focus
+      color: rgba(129, 113, 176, 0.9)
+      text-decoration: none
+    &--checked
+      background-color: rgba(92, 105, 146, 0.1)
 
 .overlay-slideright
   visibility: hidden
@@ -203,7 +208,7 @@ button
     z-index: -1
   &:before
     background: url(../img/overlay.jpg) no-repeat center 0
-
+    background-size: cover
     filter: grayscale(1)
   &:after
     background-image: linear-gradient(to top, rgba(129, 113, 176, 0.9) 0%, rgba(74, 90, 135, 0.9) 100%)
@@ -229,7 +234,7 @@ button
   &__control
     position: relative
     margin: 10px 0
-    padding: 12px 78px 15px 12px
+    padding: 12px 38px 15px 12px
     border-radius: 3px
     background-color: #fff
     overflow: hidden
@@ -241,12 +246,13 @@ button
       position: absolute
       display: block
       top: 50%
-      right: 35px
-      width: 0.5em
-      height: 0.313em
+      right: 15px
+      width: 16px
+      height: 10px
       transform: translateY(-50%)
-      background-image: url(../img/icons/svg/arrow-down.svg)
+      background-image: url(../img/icons/svg/chevron-arrow-down.svg)
       background-repeat: no-repeat
+      background-size: contain
     &--disabled
       background-color: #e0e2ec
     &--placeholder
@@ -254,4 +260,8 @@ button
   &__select
     display: none
 
-
+.price
+  display: block
+  font: 700 40px/42px $main-font
+  color: #fff
+  text-align: center
