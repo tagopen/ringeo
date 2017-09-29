@@ -57,7 +57,7 @@
             <div class="content__item content__item--center">
               <form class="form" method="post" action="/">
                 <div class="tabs">
-                  <div class="tabs__item">
+                  <div class="tabs__item tabs__item--active">
                     <div class="step">
                       <div class="step__item">
                         <div class="field">
@@ -128,12 +128,33 @@
                     <button class="btn tabs__btn" type="button" data-tabs-control="next" data-hover="Оценить смартфон" disabled>Оценить смартфон</button>
                     <p class="notify">Все поля обязательны для заполнения</p>
                   </div>
-                  <div class="tabs__item"><span class="price tabs__price">17 500 Р</span>
+                  <div class="tabs__item tabs__item--active"><span class="price tabs__price">17 500 Р</span>
                     <p class="notify">iPhone 6 128ГБ Gold Как новый</p>
                     <div class="form-group">
-                      <input class="form-control" type="tel" name="phone" required>
+                      <input class="form-control" type="tel" name="phone" placeholder="Ваш номер телефон" required>
                     </div>
-                    <button class="btn tabs__btn" type="button" data-tabs-control="next" data-hover="Продать смартфон" disabled>Продать смартфон</button>
+                    <div class="ajax-button">
+                      <svg class="svg svg--checked ajax-button__icon ajax-button__icon--done" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img">
+                        <use xlink:href="img/sprite.svg#checked"></use>
+                      </svg>
+                      <svg class="svg svg--close ajax-button__icon ajax-button__icon--failed" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img">
+                        <use xlink:href="img/sprite.svg#close"></use>
+                      </svg>
+                      <button class="btn ajax-button__btn" type="submit" data-tabs-control="next" data-hover="Продать смартфон">Продать смартфон</button>
+                    </div>
+                  </div>
+                  <div class="tabs__item tabs__item--active">
+                    <div class="success">
+                      <div class="circle">
+                        <svg class="svg svg--checked circle__icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img">
+                          <use xlink:href="img/sprite.svg#checked"></use>
+                        </svg>
+                      </div>
+                      <h2 class="sub-heading success__heading">Ваша заявка отправлена</h2>
+                      <p class="notify success__notify">Мы свяжемся с вами в ближайшее время</p>
+                      <button class="btn tabs__btn" type="button" data-hover="Оценить другую модель" data-tabs-control="reset">Оценить другую модель</button>
+                      <div class="text-center"><a class="link" href="#"><span class="link__text">Наш адрес</span><span class="link__line link__line--right"></span><span class="link__line link__line--top"></span><span class="link__line link__line--left"></span><span class="link__line link__line--bottom"></span></a></div>
+                    </div>
                   </div>
                 </div>
               </form>
@@ -148,19 +169,23 @@
     <div class="footer"></div>
     <div class="overlay overlay-slideright">
       <div class="overlay__header">
-        <button class="overlay__close" type="button">Close</button>
-        <h2 class="sub-heading overlay__heading">Марка</h2>
+        <div class="container">
+          <button class="overlay__close" type="button">Close</button>
+          <h2 class="sub-heading overlay__heading">Марка</h2>
+        </div>
       </div>
       <div class="overlay__body">
-        <nav class="navbar">
-          <ul class="nav">
-            <li class="nav__item"><a class="nav__link" href="#">Home</a></li>
-            <li class="nav__item"><a class="nav__link" href="#">About</a></li>
-            <li class="nav__item"><a class="nav__link" href="#">Work</a></li>
-            <li class="nav__item"><a class="nav__link" href="#">Clients</a></li>
-            <li class="nav__item"><a class="nav__link" href="#">Contact</a></li>
-          </ul>
-        </nav>
+        <div class="container">
+          <nav class="navbar">
+            <ul class="nav">
+              <li class="nav__item"><a class="nav__link" href="#">Home</a></li>
+              <li class="nav__item"><a class="nav__link" href="#">About</a></li>
+              <li class="nav__item"><a class="nav__link" href="#">Work</a></li>
+              <li class="nav__item"><a class="nav__link" href="#">Clients</a></li>
+              <li class="nav__item"><a class="nav__link" href="#">Contact</a></li>
+            </ul>
+          </nav>
+        </div>
       </div>
     </div>
     <!-- build:js js/bundle.min.js-->
@@ -172,6 +197,9 @@
     <script src="js/jquery.js"></script>
     <!-- Old browsers reject JavaScript-->
     <script src="js/jquery.reject.js"></script>
+    <!-- Validator JavaScript-->
+    <script src="js/validator.js"></script>
+    <script src="js/contact_me.js"></script>
     <!-- Custom JavaScript-->
     <script src="js/main.js"></script>
     <!-- endbuild-->

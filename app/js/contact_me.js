@@ -1,11 +1,11 @@
 $(function() {
-  $('.contactForm').validator({focus: false}).on('submit', function (e) {
+  $('.form').validator({focus: false}).on('submit', function (e) {
     var $form = $(this);
     if (e.isDefaultPrevented()) {
       // handle the invalid form...
     } else {
       e.preventDefault();
-      $form.find("[type=submit]").prop("disabled", true).button('loading'); //prevent submit behaviour and display preloading
+      $form.find(".ajax-button__btn").prop("disabled", true).addClass("ajax-button__btn--loading");
 
        // get values from FORM
       var form               = $form.find('[type=submit]').val(),
@@ -54,30 +54,35 @@ $(function() {
         },
         cache: false,
         success: function(response) {
-          // Success message
-          $form.find('.success').html("<div class='alert alert-success'>");
-          $form.find('.success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
-            .append("</button>");
-          $form.find('.success > .alert-success')
-            .append("<strong>Cообщение успешно отправлено.</strong>");
-          $form.find('.success > .alert-success')
-            .append('</div>');
-          // remove prevent submit behaviour and disable preloading
-          $form.find("[type=submit]").prop("disabled", false).button('reset');  
+          setTimeout(function() {
+            // remove prevent submit behaviour and disable preloading
+            $form.find("[type=submit]").prop("disabled", false).addClass("ajax-button__btn--hide-loading");
+            // For failed icon just replace ".done" with ".failed"
+            $(".ajax-button__icon--done").addClass("ajax-button__icon--finish");
+          }, 1000);
+          setTimeout(function() {
+            $form.find("[type=submit]").removeClass("ajax-button__btn--loading");
+            $form.find("[type=submit]").removeClass("ajax-button__btn--hide-loading");
+            $form.find(".ajax-button__icon").removeClass("ajax-button__icon--finish");
+          }, 2000);
           document.location.href="./success.html";
           //clear all fields
           $form.trigger("reset");
         },
         error: function() {
-          // Fail message
-          $form.find('.success').html("<div class='alert alert-danger'>");
-          $form.find('.success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
-            .append("</button>");
-          $form.find('.success > .alert-danger').append("<strong>Письмо не отправлено. Пожалуйста, проверьте ваше интернет соединения и попробуйте еще раз!");
-          $form.find('.success > .alert-danger').append('</div>');
 
-          // remove prevent submit behaviour and disable preloading
-          $form.find("[type=submit]").prop("disabled", false).button('reset'); 
+          setTimeout(function() {
+            // remove prevent submit behaviour and disable preloading
+            $form.find("[type=submit]").prop("disabled", false).addClass("ajax-button__btn--hide-loading");
+
+            // For failed icon just replace "done" with "failed"
+            $(".ajax-button__icon--failed").addClass("ajax-button__icon--finish");
+          }, 1000);
+          setTimeout(function() {
+            $form.find("[type=submit]").removeClass("ajax-button__btn--loading");
+            $form.find("[type=submit]").removeClass("ajax-button__btn--hide-loading");
+            $form.find(".ajax-button__icon").removeClass("ajax-button__icon--finish");
+          }, 2000);
 
           //clear all fields
           //$form.trigger("reset");

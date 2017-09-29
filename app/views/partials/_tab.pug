@@ -6,7 +6,7 @@ section.intro
       .content__item.content__item--center
         form.form(method="post", action="/")
           .tabs
-            .tabs__item
+            .tabs__item.tabs__item--active
               .step
                 .step__item
                   .field
@@ -60,12 +60,31 @@ section.intro
                       option(value='9') ЛЕГКИЕ КОММЕРЧЕСКИЕ
               button.btn.tabs__btn(type="button" data-tabs-control="next", data-hover="Оценить смартфон" disabled) Оценить смартфон
               p.notify Все поля обязательны для заполнения
-            .tabs__item
+            .tabs__item.tabs__item--active
               span.price.tabs__price 17 500 Р
               p.notify iPhone 6 128ГБ Gold Как новый
               .form-group
-                input.form-control(type="tel", name="phone", required)
-              button.btn.tabs__btn(type="button" data-tabs-control="next", data-hover="Продать смартфон" disabled) Продать смартфон
+                input.form-control(type="tel", name="phone", placeholder="Ваш номер телефон" required)
+              .ajax-button
+                +svg("checked", "ajax-button__icon ajax-button__icon--done")
+                +svg("close", "ajax-button__icon ajax-button__icon--failed")
+                button.btn.ajax-button__btn(type="submit" data-tabs-control="next", data-hover="Продать смартфон") Продать смартфон
+            .tabs__item.tabs__item--active
+              .success
+                .circle
+                  +svg("checked", "circle__icon")
+                h2.sub-heading.success__heading Ваша заявка отправлена
+                p.notify.success__notify Мы свяжемся с вами в ближайшее время
+                button.btn.tabs__btn(type="button", data-hover="Оценить другую модель", data-tabs-control="reset") Оценить другую модель
+                .text-center
+                  a.link(href="#")
+                    span.link__text Наш адрес
+                    span.link__line.link__line--right
+                    span.link__line.link__line--top
+                    span.link__line.link__line--left
+                    span.link__line.link__line--bottom
+
+
       .content__item.content__item--bottom
         .phone
           a.phone__link(href="tel:84951506618") 8 (495) 150-66-18

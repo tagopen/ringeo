@@ -48,3 +48,146 @@
   +transition(all .3s ease-out)
   &:hover
     +bs(inset $direction $border-color)
+
+=underline
+  $thick : 1px
+  $pad : 0.7em
+  $extra : $pad * 1.2
+  $color : currentColor
+
+  position: relative
+  display: inline-block
+  padding: $pad $extra
+  border: $thick solid transparent
+  cursor: pointer
+  text-decoration: none
+  &__text
+    // padding: 0 0.3em;
+    transform: translate3d(0,$pad,0)
+    display: block
+    transition: transform 0.4s cubic-bezier(.2,0,0,1) 0.4s
+  &:after
+    position: absolute
+    content: ''
+    bottom: -$thick
+    left: $extra
+    right: $extra
+    height: $thick
+    background: $color
+    z-index: -1
+    transition: transform 0.8s cubic-bezier(1,0,.37,1) 0.2s,right 0.2s cubic-bezier(.04,.48,0,1) 0.6s,left 0.4s cubic-bezier(.04,.48,0,1) 0.6s
+    transform-origin: left
+  &__line
+    position: absolute
+    background: $color
+    &--right,
+    &--left
+      width: $thick
+      bottom: -$thick
+      top: -$thick
+      transform: scale3d(1,0,1)
+    &--top,
+    &--bottom
+      height: $thick
+      left: -$thick
+      right: -$thick
+      transform: scale3d(0,1,1)
+    &--right
+      right: -$thick
+      transition: transform 0.1s cubic-bezier(1,0,.65,1.01) 0.23s
+      transform-origin: top
+    &--top
+      top: -$thick
+      transition: transform 0.08s linear 0.43s
+      transform-origin: left
+    &--left
+      left: -$thick
+      transition: transform 0.08s linear 0.51s
+      transform-origin: bottom
+    &--bottom
+      bottom: -$thick
+      transition: transform 0.3s cubic-bezier(1,0,.65,1.01)
+      transform-origin: right
+  &:hover,
+  &:focus
+    text-decoration: none
+  &:hover,
+  &:active
+    .link__text
+      transform: translate3d(0,0,0)
+      transition: transform 0.6s cubic-bezier(.2,0,0,1) 0.4s
+    &:after
+      transform: scale3d(0,1,1)
+      right: -$thick
+      left: -$thick
+      transform-origin: right
+      transition: transform 0.2s cubic-bezier(1,0,.65,1.01) 0.17s, right 0.2s cubic-bezier(1,0,.65,1.01), left 0s 0.3s
+    .link__line
+      transform: scale3d(1,1,1)
+      &--right
+        transition: transform 0.1s cubic-bezier(1,0,.65,1.01) 0.2s
+        transform-origin: bottom
+      &--top
+        transition: transform 0.08s linear 0.4s
+        transform-origin: right
+      &--left
+        transition: transform 0.08s linear 0.48s
+        transform-origin: top
+      &--bottom
+        transition: transform 0.5s cubic-bezier(0,.53,.29,1) 0.56s
+        transform-origin: left
+=ajax-button
+  position: relative
+  text-align: center
+  &__btn
+    &--loading
+      font-size: 0
+      width: 30px
+      height: 30px
+      margin-top: 5px
+      border-radius: 15px
+      padding: 0
+      border: 3px solid #FFFFFF
+      border-bottom: 3px solid rgba(255, 255, 255, 0)
+      border-left: 3px solid rgba(255, 255, 255, 0)
+      background-color: transparent !important
+      animation-name: rotateAnimation
+      animation-duration: 1s
+      animation-delay: 0.2s
+      animation-iteration-count: infinite
+      &:before
+        content: none
+    &--hide-loading
+      opacity: 0
+      transform: rotate(0deg) !important
+      transform: scale(0) !important
+      &:before
+        content: none
+
+  @keyframes rotateAnimation
+    0%
+      transform: rotate(0deg)
+
+    100%
+      transform: rotate(360deg)
+
+
+  @-webkit-keyframes wk-rotateAnimation
+    0%
+      -webkit-transform: rotate(0deg)
+
+    100%
+      -webkit-transform: rotate(360deg)
+
+  &__icon
+    position: absolute
+    margin-left: -9px
+    margin-top: -9px
+    transform: scaleX(0)
+    left: 50%
+    top: 50%
+    font-size: 18px
+    color:#fff
+    transition: all .3s ease-out
+    &--finish
+      transform: scaleX(1)

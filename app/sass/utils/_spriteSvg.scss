@@ -1,23 +1,32 @@
+// checked
+$svg-checked-name: "checked";
+$svg-checked-width: em(32);
+$svg-checked-height: em(21.33);
+$svg-checked-offset-x: px;
+$svg-checked-offset-y: px;
+$svg-checked-image: "../img/sprite.svg";
+$svg-checked: ( "checked", em(32), em(21.33), px, px, "../img/sprite.svg" );
+
 // chevron-arrow-down
 $svg-chevron-arrow-down-name: "chevron-arrow-down";
-$svg-chevron-arrow-down-width: em(32);
-$svg-chevron-arrow-down-height: em(32);
+$svg-chevron-arrow-down-width: em(10);
+$svg-chevron-arrow-down-height: em(7);
 $svg-chevron-arrow-down-offset-x: px;
 $svg-chevron-arrow-down-offset-y: px;
 $svg-chevron-arrow-down-image: "../img/sprite.svg";
-$svg-chevron-arrow-down: ( "chevron-arrow-down", em(32), em(32), px, px, "../img/sprite.svg" );
+$svg-chevron-arrow-down: ( "chevron-arrow-down", em(10), em(7), px, px, "../img/sprite.svg" );
 
 // close
 $svg-close-name: "close";
-$svg-close-width: em(32);
-$svg-close-height: em(32);
+$svg-close-width: em(22);
+$svg-close-height: em(22);
 $svg-close-offset-x: px;
 $svg-close-offset-y: px;
 $svg-close-image: "../img/sprite.svg";
-$svg-close: ( "close", em(32), em(32), px, px, "../img/sprite.svg" );
+$svg-close: ( "close", em(22), em(22), px, px, "../img/sprite.svg" );
 
 
 $svg-spritesheet-width: px;
 $svg-spritesheet-height: px;
 $svg-spritesheet-image: "../img/sprite.svg";
-$svg-spritesheet-sprites: ( $svg-chevron-arrow-down,  $svg-close,  );
+$svg-spritesheet-sprites: ( $svg-checked,  $svg-chevron-arrow-down,  $svg-close,  );
