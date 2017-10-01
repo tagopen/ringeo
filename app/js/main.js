@@ -41,12 +41,31 @@
   };
 
   $(function() {
-    var tabControl = document.querySelector('[data-tabs-control="next"]'),
+    var triggerBttn = document.querySelectorAll( '[data-toggle="modal"]' ),
+        tabControl = document.querySelector('[data-tabs-control="next"]'),
         tabItems = document.querySelectorAll('.tabs__item'),
         tabItemActive = 'tabs__item--active',
         nextTab = document.querySelector('.tabs__item--active').nextSibling.nextSibling,
         tabReset = document.querySelector('[data-tabs-control="reset"]'),
-        firstTab = tabItems[0];
+        firstTab = tabItems[0],
+        selects = {};
+
+    var transEndEventNames = {
+        'WebkitTransition': 'webkitTransitionEnd',
+        'MozTransition': 'transitionend',
+        'OTransition': 'oTransitionEnd',
+        'msTransition': 'MSTransitionEnd',
+        'transition': 'transitionend'
+      },
+      transEndEventName = transEndEventNames[ Modernizr.prefixed( 'transition' ) ],
+      support = { transitions : Modernizr.csstransitions };
+
+    for (var j = 0; j < triggerBttn.length; j++) {
+      var select = triggerBttn[j].nextSibling.nextSibling,
+          id = select.getAttribute('id');
+      selects[id] = select;
+    }
+
     if (tabControl) {
       tabControl.onEvent( 'click', function(e) {
         e.preventDefault();
@@ -67,17 +86,6 @@
         init();
       });
     }
-
-    var triggerBttn = document.querySelectorAll( '[data-toggle="modal"]' ),
-      transEndEventNames = {
-        'WebkitTransition': 'webkitTransitionEnd',
-        'MozTransition': 'transitionend',
-        'OTransition': 'oTransitionEnd',
-        'msTransition': 'MSTransitionEnd',
-        'transition': 'transitionend'
-      },
-      transEndEventName = transEndEventNames[ Modernizr.prefixed( 'transition' ) ],
-      support = { transitions : Modernizr.csstransitions };
 
     function toggleOverlay(overlay) {
       if( classie.has( overlay, 'open' ) ) {
@@ -127,7 +135,6 @@
           btn.innerHTML = select.options[select.selectedIndex].text;
           btn.classList.add("field__control--placeholder");
 
-
           if (i > 0) {
             select.disabled = true;
           }
@@ -146,6 +153,34 @@
       }
     }
 
+    function pricesData(select) {
+      var options = prices,
+          currentSelectId = select.getAttribute('id'),
+          data = {};
+
+
+      for (var key in selects) {
+        if (selects[key].getAttribute('id') !== currentSelectId && key !== "product_id") {
+          options = options[selects[key].value];
+        } else {
+          break;
+        }
+      }
+
+      for (var key in options) {
+        if(key === "product_id"){
+          var productInput = document.querySelector("#product_id");
+          if (productInput) {
+            productInput.value = options["product_id"];
+          }
+        } else {
+          data[key] = key;
+        }
+      }
+
+      return data;
+    }
+
     function getOptions(select) {
       var optionsArray = {};
 
@@ -159,15 +194,34 @@
       return optionsArray;
     }
 
-    function loadSelectInModal(select, modal) {
-      var options = getOptions(select),
-          selectId = select.getAttribute('id'),
-          nav     = modal.querySelector('.nav');
+    function setOptions(select) {
+      var data = pricesData(select),
+          placeholder = select.options[0].text,
+          html = '';
 
-      if (nav.innerHTML === "" || select.value ==="placeholder") {
+      if (select.value === "placeholder") {
+
+        html += '<option value="placeholder">' + placeholder + '</option>';
+        for (var key in data) {
+          html += '<option value="' + key + '">' + data[key] + '</option>';
+        }
+
+        select.innerHTML = html;
+      }
+      return data;
+    }
+
+    function loadSelectInModal(select, modal) {
+      var 
+          selectId = select.getAttribute('id'),
+          nav     = modal.querySelector('.nav'),
+          data = setOptions(select),
+          options = getOptions(select);
+
+      if (nav.innerHTML === "" || select.value === "placeholder") {
         nav.innerHTML = '';
-        for (var key in options) {
-          if (options.hasOwnProperty(key)) {
+        for (var key in data) {
+          if (data.hasOwnProperty(key)) {
 
             var li = document.createElement("li"),
                 a = document.createElement("a");
@@ -177,7 +231,7 @@
             a.className = "nav__link";
             a.href = "#" + selectId;
             a.setAttribute("data-option-id", key);
-            a.innerHTML = options[key];
+            a.innerHTML = data[key];
             a.addEventListener("click", setSelect.bind(a,modal));
 
             li.appendChild(a);
@@ -254,7 +308,6 @@
 
   // add placeholders
   $(function() {
-    console.log(prices);
     var $select = $('.field__select');
       $select.each(function() {
         var $this = $(this),

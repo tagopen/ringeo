@@ -13,51 +13,26 @@ section.intro
                     .field__control.field__control--placeholder(data-toggle='modal', data-target='#modal-1')
                     select#mark.field__select(name='mark')
                       option(value='placeholder') Марка
-                      option(value='0') ЛЕГКОВЫЕ
-                      option(value='2') МОТОЦИКЛЫ
-                      option(value='3') СКУТЕРЫ
-                      option(value='7') МОТОВЕЗДЕХОДЫ
-                      option(value='9') ЛЕГКИЕ КОММЕРЧЕСКИЕ
                 .step__item
                   .field
                     .field__control.field__control--disabled.field__control--placeholder(data-toggle='modal', data-target='#modal-2')
                     select#model.field__select(name='model', disabled)
                       option(value='placeholder') Модель
-                      option(value='0') ЛЕГКОВЫЕ
-                      option(value='2') МОТОЦИКЛЫ
-                      option(value='3') СКУТЕРЫ
-                      option(value='7') МОТОВЕЗДЕХОДЫ
-                      option(value='9') ЛЕГКИЕ КОММЕРЧЕСКИЕ
                 .step__item
                   .field
                     .field__control.field__control--disabled.field__control--placeholder(data-toggle='modal', data-target='#modal-3')
                     select#memory.field__select(name='memory', disabled)
                       option(value='placeholder') Память
-                      option(value='0') ЛЕГКОВЫЕ
-                      option(value='2') МОТОЦИКЛЫ
-                      option(value='3') СКУТЕРЫ
-                      option(value='7') МОТОВЕЗДЕХОДЫ
-                      option(value='9') ЛЕГКИЕ КОММЕРЧЕСКИЕ
                 .step__item
                   .field
                     .field__control.field__control--disabled.field__control--placeholder(data-toggle='modal', data-target='#modal-4')
                     select#color.field__select(name='color', disabled)
                       option(value='placeholder') Цвет
-                      option(value='0') ЛЕГКОВЫЕ
-                      option(value='2') МОТОЦИКЛЫ
-                      option(value='3') СКУТЕРЫ
-                      option(value='7') МОТОВЕЗДЕХОДЫ
-                      option(value='9') ЛЕГКИЕ КОММЕРЧЕСКИЕ
                 .step__item
                   .field
                     .field__control.field__control--disabled.field__control--placeholder(data-toggle='modal', data-target='#modal-5')
                     select#condition.field__select(name='condition', disabled)
                       option(value='placeholder') Состояние
-                      option(value='0') ЛЕГКОВЫЕ
-                      option(value='2') МОТОЦИКЛЫ
-                      option(value='3') СКУТЕРЫ
-                      option(value='7') МОТОВЕЗДЕХОДЫ
-                      option(value='9') ЛЕГКИЕ КОММЕРЧЕСКИЕ
               button.btn.tabs__btn(type="button" data-tabs-control="next", data-hover="Оценить смартфон" disabled) Оценить смартфон
               p.notify Все поля обязательны для заполнения
             .tabs__item
@@ -65,6 +40,7 @@ section.intro
               p.notify iPhone 6 128ГБ Gold Как новый
               .form-group
                 input.form-control(type="tel", name="phone", placeholder="Ваш номер телефон" required)
+                input#product_id.form-control(type="hidden", name="product_id")
               .ajax-button
                 +svg("checked", "ajax-button__icon ajax-button__icon--done")
                 +svg("close", "ajax-button__icon ajax-button__icon--failed")

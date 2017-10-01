@@ -64,11 +64,6 @@
                           <div class="field__control field__control--placeholder" data-toggle="modal" data-target="#modal-1"></div>
                           <select class="field__select" id="mark" name="mark">
                             <option value="placeholder">Марка</option>
-                            <option value="0">ЛЕГКОВЫЕ</option>
-                            <option value="2">МОТОЦИКЛЫ</option>
-                            <option value="3">СКУТЕРЫ</option>
-                            <option value="7">МОТОВЕЗДЕХОДЫ</option>
-                            <option value="9">ЛЕГКИЕ КОММЕРЧЕСКИЕ</option>
                           </select>
                         </div>
                       </div>
@@ -77,11 +72,6 @@
                           <div class="field__control field__control--disabled field__control--placeholder" data-toggle="modal" data-target="#modal-2"></div>
                           <select class="field__select" id="model" name="model" disabled>
                             <option value="placeholder">Модель</option>
-                            <option value="0">ЛЕГКОВЫЕ</option>
-                            <option value="2">МОТОЦИКЛЫ</option>
-                            <option value="3">СКУТЕРЫ</option>
-                            <option value="7">МОТОВЕЗДЕХОДЫ</option>
-                            <option value="9">ЛЕГКИЕ КОММЕРЧЕСКИЕ</option>
                           </select>
                         </div>
                       </div>
@@ -90,11 +80,6 @@
                           <div class="field__control field__control--disabled field__control--placeholder" data-toggle="modal" data-target="#modal-3"></div>
                           <select class="field__select" id="memory" name="memory" disabled>
                             <option value="placeholder">Память</option>
-                            <option value="0">ЛЕГКОВЫЕ</option>
-                            <option value="2">МОТОЦИКЛЫ</option>
-                            <option value="3">СКУТЕРЫ</option>
-                            <option value="7">МОТОВЕЗДЕХОДЫ</option>
-                            <option value="9">ЛЕГКИЕ КОММЕРЧЕСКИЕ</option>
                           </select>
                         </div>
                       </div>
@@ -103,11 +88,6 @@
                           <div class="field__control field__control--disabled field__control--placeholder" data-toggle="modal" data-target="#modal-4"></div>
                           <select class="field__select" id="color" name="color" disabled>
                             <option value="placeholder">Цвет</option>
-                            <option value="0">ЛЕГКОВЫЕ</option>
-                            <option value="2">МОТОЦИКЛЫ</option>
-                            <option value="3">СКУТЕРЫ</option>
-                            <option value="7">МОТОВЕЗДЕХОДЫ</option>
-                            <option value="9">ЛЕГКИЕ КОММЕРЧЕСКИЕ</option>
                           </select>
                         </div>
                       </div>
@@ -116,11 +96,6 @@
                           <div class="field__control field__control--disabled field__control--placeholder" data-toggle="modal" data-target="#modal-5"></div>
                           <select class="field__select" id="condition" name="condition" disabled>
                             <option value="placeholder">Состояние</option>
-                            <option value="0">ЛЕГКОВЫЕ</option>
-                            <option value="2">МОТОЦИКЛЫ</option>
-                            <option value="3">СКУТЕРЫ</option>
-                            <option value="7">МОТОВЕЗДЕХОДЫ</option>
-                            <option value="9">ЛЕГКИЕ КОММЕРЧЕСКИЕ</option>
                           </select>
                         </div>
                       </div>
@@ -132,6 +107,7 @@
                     <p class="notify">iPhone 6 128ГБ Gold Как новый</p>
                     <div class="form-group">
                       <input class="form-control" type="tel" name="phone" placeholder="Ваш номер телефон" required>
+                      <input class="form-control" id="product_id" type="hidden" name="product_id">
                     </div>
                     <div class="ajax-button">
                       <svg class="svg svg--checked ajax-button__icon ajax-button__icon--done" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img">
@@ -168,77 +144,87 @@
     </main>
     <div class="footer"></div>
     <div class="overlay overlay-slideright" id="modal-1">
-      <div class="overlay__header">
-        <div class="container">
-          <button class="overlay__close" type="button">Close</button>
-          <h2 class="sub-heading overlay__heading">Марка</h2>
+      <div class="overlay__wrapper">
+        <div class="overlay__header">
+          <div class="container">
+            <button class="overlay__close" type="button">Close</button>
+            <h2 class="sub-heading overlay__heading">Марка</h2>
+          </div>
         </div>
-      </div>
-      <div class="overlay__body">
-        <div class="container">
-          <nav class="navbar">
-            <ul class="nav"></ul>
-          </nav>
+        <div class="overlay__body">
+          <div class="container">
+            <nav class="navbar">
+              <ul class="nav"></ul>
+            </nav>
+          </div>
         </div>
       </div>
     </div>
     <div class="overlay overlay-slideright" id="modal-2">
-      <div class="overlay__header">
-        <div class="container">
-          <button class="overlay__close" type="button">Close</button>
-          <h2 class="sub-heading overlay__heading">Марка</h2>
+      <div class="overlay__wrapper">
+        <div class="overlay__header">
+          <div class="container">
+            <button class="overlay__close" type="button">Close</button>
+            <h2 class="sub-heading overlay__heading">Модель</h2>
+          </div>
         </div>
-      </div>
-      <div class="overlay__body">
-        <div class="container">
-          <nav class="navbar">
-            <ul class="nav"></ul>
-          </nav>
+        <div class="overlay__body">
+          <div class="container">
+            <nav class="navbar">
+              <ul class="nav"></ul>
+            </nav>
+          </div>
         </div>
       </div>
     </div>
     <div class="overlay overlay-slideright" id="modal-3">
-      <div class="overlay__header">
-        <div class="container">
-          <button class="overlay__close" type="button">Close</button>
-          <h2 class="sub-heading overlay__heading">Марка</h2>
+      <div class="overlay__wrapper">
+        <div class="overlay__header">
+          <div class="container">
+            <button class="overlay__close" type="button">Close</button>
+            <h2 class="sub-heading overlay__heading">Память</h2>
+          </div>
         </div>
-      </div>
-      <div class="overlay__body">
-        <div class="container">
-          <nav class="navbar">
-            <ul class="nav"></ul>
-          </nav>
+        <div class="overlay__body">
+          <div class="container">
+            <nav class="navbar">
+              <ul class="nav"></ul>
+            </nav>
+          </div>
         </div>
       </div>
     </div>
     <div class="overlay overlay-slideright" id="modal-4">
-      <div class="overlay__header">
-        <div class="container">
-          <button class="overlay__close" type="button">Close</button>
-          <h2 class="sub-heading overlay__heading">Марка</h2>
+      <div class="overlay__wrapper">
+        <div class="overlay__header">
+          <div class="container">
+            <button class="overlay__close" type="button">Close</button>
+            <h2 class="sub-heading overlay__heading">Цвет</h2>
+          </div>
         </div>
-      </div>
-      <div class="overlay__body">
-        <div class="container">
-          <nav class="navbar">
-            <ul class="nav"></ul>
-          </nav>
+        <div class="overlay__body">
+          <div class="container">
+            <nav class="navbar">
+              <ul class="nav"></ul>
+            </nav>
+          </div>
         </div>
       </div>
     </div>
     <div class="overlay overlay-slideright" id="modal-5">
-      <div class="overlay__header">
-        <div class="container">
-          <button class="overlay__close" type="button">Close</button>
-          <h2 class="sub-heading overlay__heading">Марка</h2>
+      <div class="overlay__wrapper">
+        <div class="overlay__header">
+          <div class="container">
+            <button class="overlay__close" type="button">Close</button>
+            <h2 class="sub-heading overlay__heading">Состояние</h2>
+          </div>
         </div>
-      </div>
-      <div class="overlay__body">
-        <div class="container">
-          <nav class="navbar">
-            <ul class="nav"></ul>
-          </nav>
+        <div class="overlay__body">
+          <div class="container">
+            <nav class="navbar">
+              <ul class="nav"></ul>
+            </nav>
+          </div>
         </div>
       </div>
     </div>

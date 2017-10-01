@@ -8,49 +8,15 @@ $(function() {
       $form.find(".ajax-button__btn").prop("disabled", true).addClass("ajax-button__btn--loading");
 
        // get values from FORM
-      var form               = $form.find('[type=submit]').val(),
-          name               = $form.find('[name=name]').val(),
-          email              = $form.find('[name=email]').val(),
-          phone              = $form.find('[name=phone]').val(),
-          message            = $form.find('[name=message]').val(),
-          time               = $form.find('[name=time]').val(),
-          method             = $form.find('[name=method]').val(),
-          range1             = $form.find('[name=range1]').val(),
-          range2             = $form.find('[name=range2]').val(),
-          period             = new Array(),
-          material           = new Array();
-
-      $form.find("[name^=\"period\"]:checked").each(function() {
-        if ($(this).prop("checked")) {
-          var radioText = $(this).siblings().text();
-
-          period.push($.trim(radioText));
-        }
-      });
-
-      $form.find("[name^=\"material\"]:checked").each(function() {
-        if ($(this).prop("checked")) {
-          var radioText = $(this).siblings().text();
-
-          material.push($.trim(radioText));
-        }
-      });
+      var product_id         = $form.find('#product_id').val(),
+          phone              = $form.find('[name=phone]').val();
 
       $.ajax({
-        url: "./mail/mail.php",
+        url: "/new_trade_request",
         type: "POST",
         data: {
-          form: $.trim(form),
-          name: $.trim(name),
+          id: $.trim(product_id),
           phone: $.trim(phone),
-          email: $.trim(email),
-          method: $.trim(method),
-          message: $.trim(message),
-          time: $.trim(time),
-          period: period,
-          material: material,
-          range1: range1,
-          range2: range2,
         },
         cache: false,
         success: function(response) {
@@ -66,6 +32,7 @@ $(function() {
             $form.find(".ajax-button__icon").removeClass("ajax-button__icon--finish");
           }, 2000);
           
+          $('.tabs__item--active').next().addClass('tabs__item--active').siblings('.tabs__item').removeClass('tabs__item--active');
           //clear all fields
           $form.trigger("reset");
         },
@@ -83,10 +50,6 @@ $(function() {
             $form.find("[type=submit]").removeClass("ajax-button__btn--hide-loading");
             $form.find(".ajax-button__icon").removeClass("ajax-button__icon--finish");
           }, 2000);
-
-                    $('.tabs__item--active').next().addClass('tabs__item--active').siblings('.tabs__item').removeClass('tabs__item--active');
-
-
           //clear all fields
           //$form.trigger("reset");
         },
