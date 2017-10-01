@@ -10,7 +10,7 @@ section.intro
               .step
                 .step__item
                   .field
-                    #trigger-overlay.field__control.field__control--placeholder
+                    .field__control.field__control--placeholder(data-toggle='modal', data-target='#modal-1')
                     select#mark.field__select(name='mark')
                       option(value='placeholder') Марка
                       option(value='0') ЛЕГКОВЫЕ
@@ -20,8 +20,8 @@ section.intro
                       option(value='9') ЛЕГКИЕ КОММЕРЧЕСКИЕ
                 .step__item
                   .field
-                    .field__control.field__control--disabled.field__control--placeholder
-                    select#model.field__select(name='model')
+                    .field__control.field__control--disabled.field__control--placeholder(data-toggle='modal', data-target='#modal-2')
+                    select#model.field__select(name='model', disabled)
                       option(value='placeholder') Модель
                       option(value='0') ЛЕГКОВЫЕ
                       option(value='2') МОТОЦИКЛЫ
@@ -30,8 +30,8 @@ section.intro
                       option(value='9') ЛЕГКИЕ КОММЕРЧЕСКИЕ
                 .step__item
                   .field
-                    .field__control.field__control--disabled.field__control--placeholder
-                    select#memory.field__select(name='memory')
+                    .field__control.field__control--disabled.field__control--placeholder(data-toggle='modal', data-target='#modal-3')
+                    select#memory.field__select(name='memory', disabled)
                       option(value='placeholder') Память
                       option(value='0') ЛЕГКОВЫЕ
                       option(value='2') МОТОЦИКЛЫ
@@ -40,8 +40,8 @@ section.intro
                       option(value='9') ЛЕГКИЕ КОММЕРЧЕСКИЕ
                 .step__item
                   .field
-                    .field__control.field__control--disabled.field__control--placeholder
-                    select#color.field__select(name='color')
+                    .field__control.field__control--disabled.field__control--placeholder(data-toggle='modal', data-target='#modal-4')
+                    select#color.field__select(name='color', disabled)
                       option(value='placeholder') Цвет
                       option(value='0') ЛЕГКОВЫЕ
                       option(value='2') МОТОЦИКЛЫ
@@ -50,8 +50,8 @@ section.intro
                       option(value='9') ЛЕГКИЕ КОММЕРЧЕСКИЕ
                 .step__item
                   .field
-                    .field__control.field__control--disabled.field__control--placeholder
-                    select#condition.field__select(name='condition')
+                    .field__control.field__control--disabled.field__control--placeholder(data-toggle='modal', data-target='#modal-5')
+                    select#condition.field__select(name='condition', disabled)
                       option(value='placeholder') Состояние
                       option(value='0') ЛЕГКОВЫЕ
                       option(value='2') МОТОЦИКЛЫ
@@ -60,7 +60,7 @@ section.intro
                       option(value='9') ЛЕГКИЕ КОММЕРЧЕСКИЕ
               button.btn.tabs__btn(type="button" data-tabs-control="next", data-hover="Оценить смартфон" disabled) Оценить смартфон
               p.notify Все поля обязательны для заполнения
-            .tabs__item.tabs__item--active
+            .tabs__item
               span.price.tabs__price 17 500 Р
               p.notify iPhone 6 128ГБ Gold Как новый
               .form-group
@@ -69,7 +69,7 @@ section.intro
                 +svg("checked", "ajax-button__icon ajax-button__icon--done")
                 +svg("close", "ajax-button__icon ajax-button__icon--failed")
                 button.btn.ajax-button__btn(type="submit" data-tabs-control="next", data-hover="Продать смартфон") Продать смартфон
-            .tabs__item.tabs__item--active
+            .tabs__item
               .success
                 .circle
                   +svg("checked", "circle__icon")
@@ -83,7 +83,6 @@ section.intro
                     span.link__line.link__line--top
                     span.link__line.link__line--left
                     span.link__line.link__line--bottom
-
 
       .content__item.content__item--bottom
         .phone

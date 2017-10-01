@@ -65,7 +65,7 @@ $(function() {
             $form.find("[type=submit]").removeClass("ajax-button__btn--hide-loading");
             $form.find(".ajax-button__icon").removeClass("ajax-button__icon--finish");
           }, 2000);
-          document.location.href="./success.html";
+          
           //clear all fields
           $form.trigger("reset");
         },
@@ -83,6 +83,9 @@ $(function() {
             $form.find("[type=submit]").removeClass("ajax-button__btn--hide-loading");
             $form.find(".ajax-button__icon").removeClass("ajax-button__icon--finish");
           }, 2000);
+
+                    $('.tabs__item--active').next().addClass('tabs__item--active').siblings('.tabs__item').removeClass('tabs__item--active');
+
 
           //clear all fields
           //$form.trigger("reset");

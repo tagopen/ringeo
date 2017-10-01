@@ -833,7 +833,7 @@ button:focus {
   padding: 0;
   width: 20px;
   height: 20px;
-  left: 20px;
+  left: 30px;
   top: 50%;
   -webkit-transform: translateY(-50%);
       -ms-transform: translateY(-50%);
@@ -867,7 +867,7 @@ button:focus {
 
 .nav__link {
   display: block;
-  padding: 20px 0;
+  padding: 20px 10px;
   font: 400 14px/16px "PT Sans", sans-serif;
   color: #333;
   -webkit-transition: all .3s ease-out;
@@ -879,7 +879,7 @@ button:focus {
   text-decoration: none;
 }
 
-.nav__link--checked {
+.nav__link--active {
   background-color: rgba(92, 105, 146, 0.1);
 }
 
@@ -1021,6 +1021,10 @@ button:focus {
 }
 
 .field__select {
+  display: none;
+}
+
+.field__select option[value=placeholder] {
   display: none;
 }
 

@@ -21,10 +21,54 @@
     });
   });
 
+  HTMLElement.prototype.onEvent = function (eventType, callBack, useCapture) {
+    this.addEventListener(eventType, callBack, useCapture);
+    if (!this.myListeners) {
+      this.myListeners = [];
+    };
+    this.myListeners.push({ eType: eventType, callBack: callBack });
+    return this;
+  };
+
+
+  HTMLElement.prototype.removeListeners = function () {
+    if (this.myListeners) {
+      for (var i = 0; i < this.myListeners.length; i++) {
+        this.removeEventListener(this.myListeners[i].eType, this.myListeners[i].callBack);
+      };
+      delete this.myListeners;
+    };
+  };
+
   $(function() {
-    var triggerBttn = document.getElementById( 'trigger-overlay' ),
-      overlay = document.querySelector( 'div.overlay' ),
-      closeBttn = overlay.querySelector( 'button.overlay__close' ),
+    var tabControl = document.querySelector('[data-tabs-control="next"]'),
+        tabItems = document.querySelectorAll('.tabs__item'),
+        tabItemActive = 'tabs__item--active',
+        nextTab = document.querySelector('.tabs__item--active').nextSibling.nextSibling,
+        tabReset = document.querySelector('[data-tabs-control="reset"]'),
+        firstTab = tabItems[0];
+    if (tabControl) {
+      tabControl.onEvent( 'click', function(e) {
+        e.preventDefault();
+        for (var j = 0; j < tabItems.length; j++) {
+          tabItems[j].classList.remove(tabItemActive);
+        }
+        nextTab.classList.add(tabItemActive);
+      });
+    }
+
+    if (tabReset) {
+      tabReset.onEvent( 'click', function(e) {
+        e.preventDefault();
+        for (var j = 0; j < tabItems.length; j++) {
+          tabItems[j].classList.remove(tabItemActive);
+        }
+        firstTab.classList.add(tabItemActive);
+        init();
+      });
+    }
+
+    var triggerBttn = document.querySelectorAll( '[data-toggle="modal"]' ),
       transEndEventNames = {
         'WebkitTransition': 'webkitTransitionEnd',
         'MozTransition': 'transitionend',
@@ -35,7 +79,7 @@
       transEndEventName = transEndEventNames[ Modernizr.prefixed( 'transition' ) ],
       support = { transitions : Modernizr.csstransitions };
 
-    function toggleOverlay() {
+    function toggleOverlay(overlay) {
       if( classie.has( overlay, 'open' ) ) {
         classie.remove( overlay, 'open' );
         classie.add( overlay, 'close' );
@@ -58,12 +102,159 @@
       }
     }
 
-    triggerBttn.addEventListener( 'click', toggleOverlay );
-    closeBttn.addEventListener( 'click', toggleOverlay );
+    function init() {
+      for (var i = 0; i < triggerBttn.length; i ++) {
+
+        var btn = triggerBttn[i],
+            targetModal = btn.getAttribute('data-target'),
+            modal = document.querySelector(targetModal),
+            select = btn.nextSibling.nextSibling,
+            navs = document.querySelectorAll(".overlay .nav"),
+            tabControl = document.querySelector('[data-tabs-control="next"]');
+
+        if (tabControl) {
+          tabControl.disabled = true;
+        }
+
+        if ( modal ) {
+          var closeBttn = modal.querySelector( 'button.overlay__close' );
+
+          closeBttn.removeListeners();
+          closeBttn.onEvent( 'click', toggleOverlay.bind(null, modal) );
+          btn.removeListeners();
+          btn.onEvent( 'click', loadSelectInModal.bind(null, select, modal) );
+          select.value = "placeholder";
+          btn.innerHTML = select.options[select.selectedIndex].text;
+          btn.classList.add("field__control--placeholder");
+
+
+          if (i > 0) {
+            select.disabled = true;
+          }
+
+          if (select.disabled == true) {
+            btn.style.pointerEvents = 'none';
+            btn.classList.add("field__control--disabled");
+          } else {
+            btn.classList.remove("field__control--disabled");
+          }
+
+          for(var j = 0; j < navs.length; j ++) {
+            navs[j].innerHTML = '';
+          }
+        }
+      }
+    }
+
+    function getOptions(select) {
+      var optionsArray = {};
+
+      for (var i = 0; i < select.length; i++) {
+        var option = select.options[i];
+        if (option.value !== "placeholder") {
+          optionsArray[option.value] = option.text;
+        }
+      }
+
+      return optionsArray;
+    }
+
+    function loadSelectInModal(select, modal) {
+      var options = getOptions(select),
+          selectId = select.getAttribute('id'),
+          nav     = modal.querySelector('.nav');
+
+      if (nav.innerHTML === "" || select.value ==="placeholder") {
+        nav.innerHTML = '';
+        for (var key in options) {
+          if (options.hasOwnProperty(key)) {
+
+            var li = document.createElement("li"),
+                a = document.createElement("a");
+
+            li.class = "nav__item";
+
+            a.className = "nav__link";
+            a.href = "#" + selectId;
+            a.setAttribute("data-option-id", key);
+            a.innerHTML = options[key];
+            a.addEventListener("click", setSelect.bind(a,modal));
+
+            li.appendChild(a);
+            nav.appendChild(li);
+          }
+        }
+      }
+
+      toggleOverlay(modal);
+    }
+
+
+    function setSelect(modal) {
+      var target = this.getAttribute('href'),
+          optionID = this.getAttribute("data-option-id"),
+          select = document.querySelector(target),
+          btn = select.previousSibling.previousSibling,
+          navLinks = modal.querySelectorAll('.nav__link'),
+          currentLink = this;
+
+
+      for(var j = 0; j < navLinks.length; j ++) {
+        navLinks[j].classList.remove('nav__link--active');
+      }
+
+      currentLink.classList.add('nav__link--active');
+
+      select.value = optionID;
+      btn.innerHTML = select.options[select.selectedIndex].text;
+      btn.classList.remove("field__control--placeholder");
+      toggleOverlay(modal);
+      activeNextElement(btn);
+    }
+
+    function activeNextElement(currentBtn) {
+      var nextStep = currentBtn.closest(".step__item").nextSibling.nextSibling,
+          i = 0,
+          tab = document.querySelector('[data-tabs-control="next"]');
+
+      if(nextStep) {
+        tab.disabled = true;
+      } else {
+        tab.disabled = false;
+      }
+
+      while(nextStep) {
+        var btn = nextStep.querySelector('[data-toggle="modal"]') || false;
+        if (btn) {
+          var select = btn.nextSibling.nextSibling;
+
+          select.value = "placeholder";
+          btn.innerHTML = select.options[select.selectedIndex].text;
+
+          if (i < 1) {
+            select.disabled = false;
+            btn.classList.remove("field__control--disabled");
+              btn.classList.add("field__control--placeholder");
+            btn.style.pointerEvents = 'auto';
+          } else {
+              btn.classList.add("field__control--disabled");
+              btn.classList.add("field__control--placeholder");
+              btn.style.pointerEvents = 'none';
+              select.disabled = true;
+          }
+        }
+
+        nextStep = nextStep.nextSibling.nextSibling;
+        i ++;
+      }
+    }
+
+    init();
   });
 
   // add placeholders
   $(function() {
+    console.log(prices);
     var $select = $('.field__select');
       $select.each(function() {
         var $this = $(this),

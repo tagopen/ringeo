@@ -61,7 +61,7 @@
                     <div class="step">
                       <div class="step__item">
                         <div class="field">
-                          <div class="field__control field__control--placeholder" id="trigger-overlay"></div>
+                          <div class="field__control field__control--placeholder" data-toggle="modal" data-target="#modal-1"></div>
                           <select class="field__select" id="mark" name="mark">
                             <option value="placeholder">Марка</option>
                             <option value="0">ЛЕГКОВЫЕ</option>
@@ -74,8 +74,8 @@
                       </div>
                       <div class="step__item">
                         <div class="field">
-                          <div class="field__control field__control--disabled field__control--placeholder"></div>
-                          <select class="field__select" id="model" name="model">
+                          <div class="field__control field__control--disabled field__control--placeholder" data-toggle="modal" data-target="#modal-2"></div>
+                          <select class="field__select" id="model" name="model" disabled>
                             <option value="placeholder">Модель</option>
                             <option value="0">ЛЕГКОВЫЕ</option>
                             <option value="2">МОТОЦИКЛЫ</option>
@@ -87,8 +87,8 @@
                       </div>
                       <div class="step__item">
                         <div class="field">
-                          <div class="field__control field__control--disabled field__control--placeholder"></div>
-                          <select class="field__select" id="memory" name="memory">
+                          <div class="field__control field__control--disabled field__control--placeholder" data-toggle="modal" data-target="#modal-3"></div>
+                          <select class="field__select" id="memory" name="memory" disabled>
                             <option value="placeholder">Память</option>
                             <option value="0">ЛЕГКОВЫЕ</option>
                             <option value="2">МОТОЦИКЛЫ</option>
@@ -100,8 +100,8 @@
                       </div>
                       <div class="step__item">
                         <div class="field">
-                          <div class="field__control field__control--disabled field__control--placeholder"></div>
-                          <select class="field__select" id="color" name="color">
+                          <div class="field__control field__control--disabled field__control--placeholder" data-toggle="modal" data-target="#modal-4"></div>
+                          <select class="field__select" id="color" name="color" disabled>
                             <option value="placeholder">Цвет</option>
                             <option value="0">ЛЕГКОВЫЕ</option>
                             <option value="2">МОТОЦИКЛЫ</option>
@@ -113,8 +113,8 @@
                       </div>
                       <div class="step__item">
                         <div class="field">
-                          <div class="field__control field__control--disabled field__control--placeholder"></div>
-                          <select class="field__select" id="condition" name="condition">
+                          <div class="field__control field__control--disabled field__control--placeholder" data-toggle="modal" data-target="#modal-5"></div>
+                          <select class="field__select" id="condition" name="condition" disabled>
                             <option value="placeholder">Состояние</option>
                             <option value="0">ЛЕГКОВЫЕ</option>
                             <option value="2">МОТОЦИКЛЫ</option>
@@ -128,7 +128,7 @@
                     <button class="btn tabs__btn" type="button" data-tabs-control="next" data-hover="Оценить смартфон" disabled>Оценить смартфон</button>
                     <p class="notify">Все поля обязательны для заполнения</p>
                   </div>
-                  <div class="tabs__item tabs__item--active"><span class="price tabs__price">17 500 Р</span>
+                  <div class="tabs__item"><span class="price tabs__price">17 500 Р</span>
                     <p class="notify">iPhone 6 128ГБ Gold Как новый</p>
                     <div class="form-group">
                       <input class="form-control" type="tel" name="phone" placeholder="Ваш номер телефон" required>
@@ -143,7 +143,7 @@
                       <button class="btn ajax-button__btn" type="submit" data-tabs-control="next" data-hover="Продать смартфон">Продать смартфон</button>
                     </div>
                   </div>
-                  <div class="tabs__item tabs__item--active">
+                  <div class="tabs__item">
                     <div class="success">
                       <div class="circle">
                         <svg class="svg svg--checked circle__icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img">
@@ -167,7 +167,7 @@
       </section>
     </main>
     <div class="footer"></div>
-    <div class="overlay overlay-slideright">
+    <div class="overlay overlay-slideright" id="modal-1">
       <div class="overlay__header">
         <div class="container">
           <button class="overlay__close" type="button">Close</button>
@@ -177,13 +177,67 @@
       <div class="overlay__body">
         <div class="container">
           <nav class="navbar">
-            <ul class="nav">
-              <li class="nav__item"><a class="nav__link" href="#">Home</a></li>
-              <li class="nav__item"><a class="nav__link" href="#">About</a></li>
-              <li class="nav__item"><a class="nav__link" href="#">Work</a></li>
-              <li class="nav__item"><a class="nav__link" href="#">Clients</a></li>
-              <li class="nav__item"><a class="nav__link" href="#">Contact</a></li>
-            </ul>
+            <ul class="nav"></ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div class="overlay overlay-slideright" id="modal-2">
+      <div class="overlay__header">
+        <div class="container">
+          <button class="overlay__close" type="button">Close</button>
+          <h2 class="sub-heading overlay__heading">Марка</h2>
+        </div>
+      </div>
+      <div class="overlay__body">
+        <div class="container">
+          <nav class="navbar">
+            <ul class="nav"></ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div class="overlay overlay-slideright" id="modal-3">
+      <div class="overlay__header">
+        <div class="container">
+          <button class="overlay__close" type="button">Close</button>
+          <h2 class="sub-heading overlay__heading">Марка</h2>
+        </div>
+      </div>
+      <div class="overlay__body">
+        <div class="container">
+          <nav class="navbar">
+            <ul class="nav"></ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div class="overlay overlay-slideright" id="modal-4">
+      <div class="overlay__header">
+        <div class="container">
+          <button class="overlay__close" type="button">Close</button>
+          <h2 class="sub-heading overlay__heading">Марка</h2>
+        </div>
+      </div>
+      <div class="overlay__body">
+        <div class="container">
+          <nav class="navbar">
+            <ul class="nav"></ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div class="overlay overlay-slideright" id="modal-5">
+      <div class="overlay__header">
+        <div class="container">
+          <button class="overlay__close" type="button">Close</button>
+          <h2 class="sub-heading overlay__heading">Марка</h2>
+        </div>
+      </div>
+      <div class="overlay__body">
+        <div class="container">
+          <nav class="navbar">
+            <ul class="nav"></ul>
           </nav>
         </div>
       </div>
@@ -197,6 +251,8 @@
     <script src="js/jquery.js"></script>
     <!-- Old browsers reject JavaScript-->
     <script src="js/jquery.reject.js"></script>
+    <!-- Prices JavaScript-->
+    <script src="js/prices_auto.js"></script>
     <!-- Validator JavaScript-->
     <script src="js/validator.js"></script>
     <script src="js/contact_me.js"></script>

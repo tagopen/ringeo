@@ -149,7 +149,7 @@ button
     padding: 0
     width: 20px
     height: 20px
-    left: 20px
+    left: 30px
     top: 50%
     transform: translateY(-50%)
     overflow: hidden
@@ -174,7 +174,7 @@ button
     background-color: #fff
   &__link
     display: block
-    padding: 20px 0
+    padding: 20px 10px
     font: 400 14px/16px $main-font
     color: #333
     transition: all .3s ease-out
@@ -182,7 +182,7 @@ button
     &:focus
       color: rgba(129, 113, 176, 0.9)
       text-decoration: none
-    &--checked
+    &--active
       background-color: rgba(92, 105, 146, 0.1)
 
 .overlay-slideright
@@ -262,6 +262,8 @@ button
       color: #999
   &__select
     display: none
+    option[value=placeholder]
+      display: none
 .success
   &__notify
     margin-bottom: 27px
