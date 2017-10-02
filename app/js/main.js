@@ -77,6 +77,7 @@
         }
         nextTab.classList.add(tabItemActive);
         price.innerHTML = selects.condition.options[selects.condition.selectedIndex].getAttribute('data-price');
+        descrPhone = '';
         for (var key in selects) {
           var select = selects[key],
               text = select.options[select.selectedIndex].text;
