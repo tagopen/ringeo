@@ -48,7 +48,10 @@
         nextTab = document.querySelector('.tabs__item--active').nextSibling.nextSibling,
         tabReset = document.querySelector('[data-tabs-control="reset"]'),
         firstTab = tabItems[0],
-        selects = {};
+        selects = {},
+        price = document.querySelector('.price__value'),
+        descr = document.querySelector('.js-descr'),
+        descrPhone = '';
 
     var transEndEventNames = {
         'WebkitTransition': 'webkitTransitionEnd',
@@ -73,6 +76,13 @@
           tabItems[j].classList.remove(tabItemActive);
         }
         nextTab.classList.add(tabItemActive);
+        price.innerHTML = selects.condition.options[selects.condition.selectedIndex].getAttribute('data-price');
+        for (var key in selects) {
+          var select = selects[key],
+              text = select.options[select.selectedIndex].text;
+              descrPhone += text + ' ';
+        }
+        descr.innerHTML = descrPhone;
       });
     }
 
@@ -153,11 +163,33 @@
       }
     }
 
+    function jsUcfirst(string) 
+    {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+    function toTitleCase(str)
+    {
+      return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+    }
+
+    function removeDashes(string) {
+      return string.replace(/[_-]/g, " "); 
+    }
+
+    function isEmpty(obj) {
+      for(var prop in obj) {
+        if(obj.hasOwnProperty(prop))
+          return false;
+      }
+      return JSON.stringify(obj) === JSON.stringify({});
+    }
+
     function pricesData(select) {
       var options = prices,
           currentSelectId = select.getAttribute('id'),
-          data = {};
-
+          data = {},
+          price = {};
 
       for (var key in selects) {
         if (selects[key].getAttribute('id') !== currentSelectId && key !== "product_id") {
@@ -174,11 +206,33 @@
             productInput.value = options[key];
           }
         } else {
-          data[key] = key;
+          var temp = jsUcfirst(removeDashes(key));
+          switch (key) {
+            case "works":
+              temp = "Хорошее";
+              break;
+            case "best":
+              temp = "Отличное";
+              break;
+            case "like_new":
+              temp = "Как новый";
+              break;
+          }
+          if (currentSelectId === "memory") {
+            data[key] = temp + "ГБ";
+          } else if (currentSelectId === "color") {
+            data[key] = toTitleCase(temp);
+          } else {
+            data[key] = temp;
+          }
+
+          if (options[key] !== null && typeof options[key] !== 'object') {
+            price[key] = options[key];
+          }
         }
       });
 
-       return data;
+       return [data, price];
     }
 
     function getOptions(select) {
@@ -195,15 +249,24 @@
     }
 
     function setOptions(select) {
-      var data = pricesData(select),
+      var pricedata = pricesData(select),
+          data = pricedata[0],
+          price = pricedata[1],
           placeholder = select.options[0].text,
-          html = '';
+          html = '',
+          priceValue = '';
 
       if (select.value === "placeholder") {
-
         html += '<option value="placeholder">' + placeholder + '</option>';
         for (var key in data) {
-          html += '<option value="' + key + '">' + data[key] + '</option>';
+          if (!isEmpty(price)) {
+            for (var val in price) {
+              if (val === key) {
+                priceValue = ' data-price="' + price[val] + '"';
+              }
+            }
+          }
+          html += '<option value="' + key + '"' + priceValue + '>' + data[key] + '</option>';
         }
 
         select.innerHTML = html;

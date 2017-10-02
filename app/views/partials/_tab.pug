@@ -36,8 +36,10 @@ section.intro
               button.btn.tabs__btn(type="button" data-tabs-control="next", data-hover="Оценить смартфон" disabled) Оценить смартфон
               p.notify Все поля обязательны для заполнения
             .tabs__item
-              span.price.tabs__price 17 500 Р
-              p.notify iPhone 6 128ГБ Gold Как новый
+              span.price.tabs__price 
+                span.price__value 17 500 
+                span.price__currency  Р
+              p.notify.js-descr iPhone 6 128ГБ Gold Как новый
               .form-group
                 input.form-control(type="tel", name="phone", placeholder="Ваш номер телефон" required)
                 input#product_id.form-control(type="hidden", name="product_id")
