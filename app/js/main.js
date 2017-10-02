@@ -167,18 +167,18 @@
         }
       }
 
-      for (var key in options) {
-        if(key === "product_id"){
+      Object.keys(options).sort().forEach(function(key) {
+        if(key === "product_id") {
           var productInput = document.querySelector("#product_id");
           if (productInput) {
-            productInput.value = options["product_id"];
+            productInput.value = options[key];
           }
         } else {
           data[key] = key;
         }
-      }
+      });
 
-      return data;
+       return data;
     }
 
     function getOptions(select) {
