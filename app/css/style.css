@@ -661,7 +661,8 @@ output {
 }
 
 .heading {
-  font: 700 34px/36px "PT Sans", sans-serif;
+  margin-bottom: 11px;
+  font: 700 30px/32px "PT Sans", sans-serif;
   color: #fff;
   text-align: center;
 }
@@ -708,7 +709,7 @@ button:focus {
       -ms-user-select: none;
           user-select: none;
   border: 1px solid transparent;
-  padding: 10px 12px;
+  padding: 6px 12px;
   width: 100%;
   font-size: 1rem;
   -webkit-border-radius: 3px;
@@ -754,7 +755,7 @@ button:focus {
 }
 
 .notify {
-  margin: 14px 0;
+  margin: 8px 0 17px;
   font: 400 14px/24px "PT Sans", sans-serif;
   color: #fff;
   text-align: center;
@@ -970,7 +971,7 @@ button:focus {
 }
 
 .content__item--top {
-  padding: 20px 0;
+  padding: 15px 0;
   -webkit-align-self: flex-start;
       -ms-flex-item-align: start;
           align-self: flex-start;
@@ -1004,8 +1005,10 @@ button:focus {
 
 .field__control {
   position: relative;
+  margin: 7px 0 10px;
+  padding: 10px 38px 15px 12px;
   margin: 10px 0;
-  padding: 12px 38px 15px 12px;
+  padding: 12px 38px 12px 12px;
   -webkit-border-radius: 3px;
           border-radius: 3px;
   background-color: #fff;
