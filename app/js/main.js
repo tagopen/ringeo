@@ -185,6 +185,37 @@
       }
       return JSON.stringify(obj) === JSON.stringify({});
     }
+    function sortByValue(obj, type, caseSensitive) {
+      var temp_array = [];
+      for (var key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          if (!caseSensitive) {
+            key = (key['toLowerCase'] ? key.toLowerCase() : key);
+          }
+          temp_array.push(key);
+        }
+      }
+      if (typeof type === 'function') {
+        temp_array.sort(type);
+      } else if (type === 'value') {
+        temp_array.sort(function(a,b) {
+          var x = obj[a];
+          var y = obj[b];
+          if (!caseSensitive) {
+            x = (x['toLowerCase'] ? x.toLowerCase() : x);
+            y = (y['toLowerCase'] ? y.toLowerCase() : y);
+          }
+          return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+        });
+      } else {
+        temp_array.sort();
+      }
+      var temp_obj = {};
+      for (var i=0; i<temp_array.length; i++) {
+        temp_obj[temp_array[i]] = obj[temp_array[i]];
+      }
+      return temp_obj;
+    };
 
     function pricesData(select) {
       var options = prices,
@@ -280,26 +311,53 @@
           selectId = select.getAttribute('id'),
           nav     = modal.querySelector('.nav'),
           data = setOptions(select),
-          options = getOptions(select);
+          options = getOptions(select),
+          descr = {};
+
+      descr["like_new"] = "Без признаков использования, царапин и потертостей";
+      descr["best"] = "Все работает, могут быть мелкие царапинки или потертости";
+      descr["works"] = "Все работает, но есть заметные царапины и потертости";
+
+
+      if (select.getAttribute('id') === "condition") {
+        data = sortByValue(data, 'value');
+        console.log(data);
+      }
 
       if (nav.innerHTML === "" || select.value === "placeholder") {
         nav.innerHTML = '';
         for (var key in data) {
           if (data.hasOwnProperty(key)) {
+            if (select.getAttribute('id') === "condition") {
+              var li = document.createElement("li"),
+                  a = document.createElement("a");
 
-            var li = document.createElement("li"),
-                a = document.createElement("a");
+              console.log(key);
+              li.class = "nav__item";
 
-            li.class = "nav__item";
+              a.className = "nav__link";
+              a.href = "#" + selectId;
+              a.setAttribute("data-option-id", key);
+              a.innerHTML = '<b class="nav__bold">' + data[key] + '</b><p class="nav__text">' + descr[key]  + '</p>';
+              a.addEventListener("click", setSelect.bind(a,modal));
 
-            a.className = "nav__link";
-            a.href = "#" + selectId;
-            a.setAttribute("data-option-id", key);
-            a.innerHTML = data[key];
-            a.addEventListener("click", setSelect.bind(a,modal));
+              li.appendChild(a);
+              nav.appendChild(li);
+            } else {
+              var li = document.createElement("li"),
+                  a = document.createElement("a");
 
-            li.appendChild(a);
-            nav.appendChild(li);
+              li.class = "nav__item";
+
+              a.className = "nav__link";
+              a.href = "#" + selectId;
+              a.setAttribute("data-option-id", key);
+              a.innerHTML = data[key];
+              a.addEventListener("click", setSelect.bind(a,modal));
+
+              li.appendChild(a);
+              nav.appendChild(li);
+            }
           }
         }
       }
