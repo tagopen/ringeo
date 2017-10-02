@@ -130,6 +130,8 @@ button
     display: flex
     flex-direction: column
     height: 100%
+  &__container
+    height: 100%
   &__header
     position: relative
     padding: 22px 0
@@ -141,6 +143,7 @@ button
     position: relative
     flex: 1
     background-color: #fff
+    height: calc(100vh - 92px)
     z-index: 4
   &__close
     position: absolute
@@ -160,11 +163,14 @@ button
     outline: none
     cursor: pointer
     z-index: 100
+.navbar
+  height: 100%
 .nav
   position: relative
   display: block
   margin: 0 auto
   padding: 0
+  height: 100%
   overflow: auto
   list-style: none
   &__item
