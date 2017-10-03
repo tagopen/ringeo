@@ -374,7 +374,6 @@
           navLinks = modal.querySelectorAll('.nav__link'),
           currentLink = this;
 
-
       for(var j = 0; j < navLinks.length; j ++) {
         navLinks[j].classList.remove('nav__link--active');
       }

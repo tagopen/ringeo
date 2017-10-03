@@ -960,6 +960,12 @@ button:focus {
       -ms-flex-wrap: wrap;
           flex-wrap: wrap;
   height: 100vh;
+  max-height: -webkit-calc(100vh - 70px);
+  max-height: calc(100vh - 70px);
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .content__item {
