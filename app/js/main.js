@@ -22,7 +22,7 @@
   });
 
   $(function(){
-   $("[name=phone]").mask("+(9) 99999999999");
+   $("[name=phone]").mask("+7 (999) 999-99-99");
   });
 
   HTMLElement.prototype.onEvent = function (eventType, callBack, useCapture) {
