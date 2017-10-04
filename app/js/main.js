@@ -21,6 +21,10 @@
     });
   });
 
+  $(function(){
+   $("[name=phone]").mask("+(9) 99999999999");
+  });
+
   HTMLElement.prototype.onEvent = function (eventType, callBack, useCapture) {
     this.addEventListener(eventType, callBack, useCapture);
     if (!this.myListeners) {
@@ -79,9 +83,11 @@
         price.innerHTML = selects.condition.options[selects.condition.selectedIndex].getAttribute('data-price');
         descrPhone = '';
         for (var key in selects) {
-          var select = selects[key],
-              text = select.options[select.selectedIndex].text;
-              descrPhone += text + ' ';
+          if (key !== "mark") {
+            var select = selects[key],
+                text = select.options[select.selectedIndex].text;
+                descrPhone += text + ' ';
+          }
         }
         descr.innerHTML = descrPhone;
       });
@@ -221,15 +227,22 @@
       var options = prices,
           currentSelectId = select.getAttribute('id'),
           data = {},
-          price = {};
+          price = {},
+          model = '';
 
       for (var key in selects) {
+        if (selects[key].getAttribute('id') === "mark") {
+          model = selects[key].value;
+        }
+
         if (selects[key].getAttribute('id') !== currentSelectId && key !== "product_id") {
           options = options[selects[key].value];
         } else {
           break;
         }
       }
+
+
 
       Object.keys(options).sort().forEach(function(key) {
         if(key === "product_id") {
@@ -239,6 +252,7 @@
           }
         } else {
           var temp = jsUcfirst(removeDashes(key));
+
           switch (key) {
             case "works":
               temp = "Хорошее";
@@ -252,6 +266,8 @@
           }
           if (currentSelectId === "memory") {
             data[key] = temp + "ГБ";
+          } else if (currentSelectId === "model") {
+            data[key] = jsUcfirst(model) + " " + temp;
           } else if (currentSelectId === "color") {
             data[key] = toTitleCase(temp);
           } else {

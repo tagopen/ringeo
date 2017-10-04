@@ -8,15 +8,23 @@ $(function() {
       $form.find(".ajax-button__btn").prop("disabled", true).addClass("ajax-button__btn--loading");
 
        // get values from FORM
-      var product_id         = $form.find('#product_id').val(),
-          phone              = $form.find('[name=phone]').val();
+      var form               = $form.find('[type=submit]').attr("name"),
+          product_id         = $form.find('#product_id').val(),
+          phone              = $form.find('[name=phone]').val(),
+          condition          = new Array();
+
+      $form.find('.field__select').each(function() {
+        condition.push($.trim($(this).val()));
+      });
 
       $.ajax({
         url: "/new_trade_request",
         type: "POST",
         data: {
-          id: $.trim(product_id),
+          name: $.trim(form),
+          product: $.trim(product_id),
           phone: $.trim(phone),
+          condition: condition
         },
         cache: false,
         success: function(response) {
