@@ -815,10 +815,6 @@ button:focus {
   height: 100%;
 }
 
-.overlay__container {
-  height: 100%;
-}
-
 .overlay__header {
   position: relative;
   padding: 22px 0;
@@ -835,8 +831,8 @@ button:focus {
       -ms-flex: 1;
           flex: 1;
   background-color: #fff;
-  height: -webkit-calc(100vh - 92px);
-  height: calc(100vh - 92px);
+  overflow-y: auto;;
+  overflow-x: hidden;
   z-index: 4;
 }
 
@@ -863,17 +859,11 @@ button:focus {
   z-index: 100;
 }
 
-.navbar {
-  height: 100%;
-}
-
 .nav {
   position: relative;
   display: block;
   margin: 0 auto;
   padding: 0;
-  height: 100%;
-  overflow: auto;
   list-style: none;
 }
 
